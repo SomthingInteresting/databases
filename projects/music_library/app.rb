@@ -1,10 +1,10 @@
 require_relative 'lib/database_connection'
+require_relative 'lib/artist_repository'
 
-DatabaseConnection.connect('music_library')
+DatabaseConnection.connect('music_library') # real data base used here as rspec only uses the test database
 
-sql = 'SELECT id, title FROM albums;'
-result = DatabaseConnection.exec_params(sql, [])
+artist_repository = ArtistRepository.new
 
-result.each do |record|
-  p record
+artist_repository.all.each do |artist|
+  puts "#{artist.id} - #{artist.name} - #{artist.genre}"
 end
