@@ -4,7 +4,7 @@ _Copy this recipe template to design and implement Model and Repository classes 
 
 ## 1. Design and create the Table
 
-BOOK_STORE database already created
+BOOK_STORE database already created with "books" table
 ```
 
 ## 2. Create Test SQL seeds
@@ -74,14 +74,6 @@ class Book
   attr_accessor :id, :title, :author_name
 end
 
-# The keyword attr_accessor is a special Ruby feature
-# which allows us to set and get attributes on an object,
-# here's an example:
-#
-# student = Student.new
-# student.name = 'Jo'
-# student.name
-```
 
 *You may choose to test-drive this class, but unless it contains any more logic than the example above, it is probably not needed.*
 
