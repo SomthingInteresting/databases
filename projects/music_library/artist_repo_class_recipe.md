@@ -107,6 +107,15 @@ class ArtistRepository
 
     # Returns an array of Artist objects.
   end
+
+  #Selects a single record 
+  #Given the id in argument (a number)
+  def find(id)
+  # Executes the SQL query:
+  # SELECT id, name, genre FROM artists WHERE id = $1;
+
+  # Returns a single Artist object.
+  end
 end
 ```
 
@@ -128,6 +137,24 @@ artists = repo.all
 artists.length # => 2
 artists.first.id => 1
 artists.first.name => 'Pixies'
+
+# 2
+# Get a single artist
+
+repo = ArtistRepository.new
+
+artist = repo.find(1)
+artist.name => 'Pixies'
+artist.genre => 'Rock'
+
+# 3
+# Get another single artist
+
+repo = ArtistRepository.new
+
+artist = repo.find(2)
+artist.name => 'ABBA'
+artist.genre => 'Pop'
 
 ```
 
