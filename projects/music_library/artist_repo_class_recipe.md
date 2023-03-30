@@ -215,6 +215,25 @@ all_artists = repo.all
 all_artists.length => 1
 all_artists.first.id => '2'
 
+# 6
+# Update an artist
+
+repo = ArtistRepository.new
+
+artist = repo.find(1)
+
+artist.name = 'Something else'
+artist.genre = 'Disco'
+
+repo.update(artist) # => nil
+
+updated_artist = repo.find(1)
+
+updated_artist.name => 'Something else'
+updated_artist.genre => 'Disco'
+
+
+
 ```
 
 Encode this example as a test.

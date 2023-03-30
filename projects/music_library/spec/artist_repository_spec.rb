@@ -58,12 +58,34 @@ RSpec.describe ArtistRepository do
 
     id_to_delete = 1
 
-    artist = repo.find(id_to_delete)
-
-    artist.delete(artist.id) # => nil
+    repo.delete(id_to_delete)
 
     all_artists = repo.all
     expect(all_artists.length).to eq 1
     expect(all_artists.first.id).to eq '2'
+  end
+
+  it 'deletes two artists' do
+    repo = ArtistRepository.new
+
+    repo.delete(1)
+    repo.delete(2)
+
+    all_artists = repo.all
+    expect(all_artists.length).to eq 0
+  end
+
+  it 'updates the name and genre of artist id 1' do
+    repo = ArtistRepository.new
+
+    artist = repo.find(1)
+    artist.name = 'Something else'
+    artist.genre = 'Disco'
+
+    repo.update(artist)
+
+    updated_artist = repo.find(1)
+    expect(updated_artist.name).to eq('Something else')
+    expect(updated_artist.genre).to eq('Disco')
   end
 end
