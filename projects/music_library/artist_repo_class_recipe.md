@@ -116,6 +116,33 @@ class ArtistRepository
 
   # Returns a single Artist object.
   end
+
+  # Inserting a record
+  # Given an Artist object in argument
+  def create(artist)
+  # Executes the SQL query:
+  # INSERT INTO artists (name, genre) VALUES ($1, $2);
+
+  # Doesn't need to return anything.
+  end
+
+  # Updating a record
+  # Given an Artist object in argument
+  def update(artist)
+  # Executes the SQL query:
+  # UPDATE artists SET name = $1, genre = $2 WHERE id = $3;
+
+  # Doesn't need to return anything.
+  end
+
+  # Deleting a record
+  # Given the id in argument (a number)
+  def delete(id)
+  # Executes the SQL query:
+  # DELETE FROM artists WHERE id = $1;
+
+  # Doesn't need to return anything.
+  end
 end
 ```
 
@@ -155,6 +182,38 @@ repo = ArtistRepository.new
 artist = repo.find(2)
 artist.name => 'ABBA'
 artist.genre => 'Pop'
+
+# 4
+# Create a new artist
+
+repo = ArtistRepository.new
+
+artist = Artist.new
+artist.name = 'The Beatles'
+artist.genre = 'Rock'
+
+repo.create(artist) # => nil
+
+artists = repo.all
+
+last_artist = artists.last
+last_artist.name => 'The Beatles'
+last_artist.genre => 'Rock'
+
+# 5
+# Delete an artist
+
+repo = ArtistRepository.new
+
+id_to_delete = 1
+
+artist = repo.find(id_to_delete)
+
+artist.delete(artist.id) # => nil
+
+all_artists = repo.all
+all_artists.length => 1
+all_artists.first.id => '2'
 
 ```
 
