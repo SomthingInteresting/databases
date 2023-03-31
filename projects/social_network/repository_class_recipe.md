@@ -141,19 +141,19 @@ class UsersRepository
   end
 
   # Creates a single record
-  def create(student)
+  def create(user)
     # Executes the SQL query:
     # INSERT INTO users (name, email) VALUES ($1, $2);
   end
 
   # Updates a record
-  def update(student)
+  def update(user)
     # Executes the SQL query:
     # UPDATE users SET name = $1, email = $2 WHERE id = $3
   end
 
   # Deletes a record
-  def delete(student)
+  def delete(user)
     # Executes the SQL query:
     # DELETE FROM users WHERE id = $1
   end
@@ -180,23 +180,58 @@ user.length # =>  2
 
 user[0].id # =>  1
 user[0].name # =>  'David'
-user[0].cohort_name # =>  'example1@gmail.com'
+user[0].email # =>  'example1@gmail.com'
 
 user[1].id # =>  2
 user[1].name # =>  'Anna'
-user[1].cohort_name # =>  'example2@hotmail.co.uk'
+user[1].email # =>  'example2@hotmail.co.uk'
 
 
 # 2
-# Get a single student
+# Find a single user
 
-repo = StudentRepository.new
+repo = UsersRepository.new
 
-student = repo.find(1)
+user = repo.find(1)
 
-student.id # =>  1
-student.name # =>  'David'
-student.cohort_name # =>  'April 2022'
+
+user.id # =>  1
+user.name # =>  'David'
+user.email # =>  'example1@gmail.com'
+
+# 3
+# Create a single user
+
+repo = UsersRepository.new
+
+user = User.new
+user.name = 'Bob'
+user.email = 'bobbobby@yahoo.com'
+
+repo.create(user)
+
+users = repo.all
+last_user = user.last
+
+
+user.id # =>  3
+user.name # =>  'Bob'
+user.email # =>  'bobbobby@yahoo.com'
+
+# 4
+# Delete a single user
+
+repo = UsersRepository.new
+
+id_to_delete = 1
+
+repo.delete(id_to_delete)
+
+users = repo.all
+
+user.length => 1
+user.first.id  =>  2
+
 
 # Add more examples for each method
 ```
