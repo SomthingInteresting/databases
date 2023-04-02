@@ -105,13 +105,8 @@ end
 
 ```
 
-*You may choose to test-drive this class, but unless it contains any more logic than the example above, it is probably not needed.*
-
 ## 5. Define the Repository Class interface
 
-Your Repository class will need to implement methods for each "read" or "write" operation you'd like to run against the database.
-
-Using comments, define the method signatures (arguments and return value) and what they do - write up the SQL queries that will be used by each method.
 
 ```ruby
 # EXAMPLE
@@ -158,6 +153,45 @@ class UsersRepository
     # DELETE FROM users WHERE id = $1
   end
 end
+
+class PostsRepository
+
+  # Selecting all records
+  # No arguments
+  def all
+    # Executes the SQL query:
+    # SELECT id, title, content, views, user_id FROM posts;
+
+    # Returns an array of Post objects.
+  end
+
+  # Gets a single record by its ID
+  # One argument: the id (number)
+  def find(id)
+    # Executes the SQL query:
+    # SELECT id, title, content, views, user_id FROM posts WHERE id = $1;
+
+    # Returns a single Post object.
+  end
+
+  # Creates a single record
+  def create(post)
+    # Executes the SQL query:
+    # INSERT INTO posts (title, content, views, user_id) VALUES ($1, $2, $3, $4);
+  end
+
+  # Updates a record
+  def update(user)
+    # Executes the SQL query:
+    # UPDATE posts SET title = $1, content = $2, views = $3, user_id = $4 WHERE id = $5
+  end
+
+  # Deletes a record
+  def delete(user)
+    # Executes the SQL query:
+    # DELETE FROM posts WHERE id = $1
+  end
+end
 ```
 
 ## 6. Write Test Examples
@@ -172,7 +206,7 @@ These examples will later be encoded as RSpec tests.
 # 1
 # Get all users
 
-repo = UsersRepository.new
+repo = PostsRepository.new
 
 user = repo.all
 
